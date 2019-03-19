@@ -14,7 +14,10 @@ class ModuloController extends Controller
      */
     public function index()
     {
-        //
+        
+        $qs = modulo::all();
+
+        return $qs;
     }
 
     /**
@@ -35,7 +38,10 @@ class ModuloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $modulo = new modulo();
+        $modulo->modulo = $request['modulo'];
+        $modulo->save();
+        return $modulo;
     }
 
     /**
@@ -44,9 +50,10 @@ class ModuloController extends Controller
      * @param  \App\Modulo  $modulo
      * @return \Illuminate\Http\Response
      */
-    public function show(Modulo $modulo)
+    public function show(Modulo $modulo, $id)
     {
-        //
+        $registroencontrado  = modulo::find($id);
+        return $registroencontrado;
     }
 
     /**
@@ -55,9 +62,9 @@ class ModuloController extends Controller
      * @param  \App\Modulo  $modulo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Modulo $modulo)
+    public function edit(Modulo $modulos)
     {
-        //
+        return view('editarmodulo', ['modulo' => $modulos]);
     }
 
     /**
@@ -67,9 +74,11 @@ class ModuloController extends Controller
      * @param  \App\Modulo  $modulo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Modulo $modulo)
+    public function update(Request $request, Modulo $modulos)
     {
-        //
+        $modulos->modulo = $request['modulo'];
+        $modulos->save();
+        return $modulos;
     }
 
     /**
@@ -78,8 +87,17 @@ class ModuloController extends Controller
      * @param  \App\Modulo  $modulo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Modulo $modulo)
+    public function destroy(Modulo $modulos)
     {
-        //
+        $modulos->delete();
+        return redirect('modulos/list');
+    }
+
+    public function list()
+    {
+        $rs = $this->index();
+        return view('listamodulo', ['rs' => $rs]);
+
+
     }
 }

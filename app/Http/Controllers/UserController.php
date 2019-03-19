@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\TipoIncidencia;
+use App\User;
 use Illuminate\Http\Request;
 
-class TipoIncidenciaController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class TipoIncidenciaController extends Controller
      */
     public function index()
     {
-        $qs = TipoIncidencia::all();
+        $qs = User::all();
 
         return $qs;
     }
@@ -26,7 +26,7 @@ class TipoIncidenciaController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -37,66 +37,73 @@ class TipoIncidenciaController extends Controller
      */
     public function store(Request $request)
     {
-        $tipo = new tipo();
-        $tipo->tipo = $request['tipo'];
-        $tipo->save();
-        return $tipo;
+        $model = new User();
+
+        $model->name = $request['name'];
+        $model->email = $request['email'];
+        $model->password = $request['password'];
+       
+
+        $model->save();
+        return $model;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\TipoIncidencia  $tipoIncidencia
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(TipoIncidencia $tipo, $id)
+    public function show(User $user, $id)
     {
-        $registroencontrado  = tipo::find($id);
-        return $registroencontrado;
+        $registrosencontrados  = user::find($id);
+        return $registrosencontrados;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\TipoIncidencia  $tipoIncidencia
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipoIncidencia $tipo)
+    public function edit(User $user)
     {
-        return view('editartipo', ['tipo' => $tipo]);
+        return view('editarusers', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TipoIncidencia  $tipoIncidencia
+     * @param  \App\user  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipoIncidencia $tipo)
+    public function update(Request $request, User $user)
     {
-        $tipo->tipo = $request['tipo'];
-        $tipo->save();
-        return $tipo;
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->password = $request['password'];
+
+        $user->save();
+        return $user;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\TipoIncidencia  $tipoIncidencia
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipoIncidencia $tipo)
+    public function destroy(User $user)
     {
-        $tipo->delete();
-        return redirect('tipoincidencia/list');
+        $user->delete();
+        return redirect('/user/list');
     }
 
     public function list()
     {
         $rs = $this->index();
-        return view('listatipo', ['rs' => $rs]);
-
-
+        return view('listauser', ['rs' => $rs]);
     }
+
 }

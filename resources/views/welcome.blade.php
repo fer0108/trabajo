@@ -1,99 +1,166 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
+<!DOCTYPE html>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+<html lang="en">
+<head>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
 
-            .full-height {
-                height: 100vh;
-            }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+<body>
 
-            .position-ref {
-                position: relative;
-            }
+<h1>INICIO </h1>
+    <div>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
 
-            .content {
-                text-align: center;
-            }
+    <table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ENTIDAD</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+       
+        <tr>
+           
+            <td>
+            <a href="/entidades/list/">Listas</a>
+            <div>
+            <a href="/entidades/create">crear</a>
 
-            .title {
-                font-size: 84px;
-            }
+        </tr>
+   <thead>
+        <tr>
+            
+            <th>PERFIL</th>
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+        </tr>
+        <tr>            
+           <td>
+           <a href="/perfil/listas/">Listas</a>
+           <div>
+           <a href="/perfil/create">crear</a>
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+       </tr>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+    </thead>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+    <thead>
+        <tr>
+            
+            <th>CARGOS</th>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
+        </tr>
+        <tr>            
+           <td>
+           <a href="/cargo/list/">Listas</a>
+           <div>
+           <a href="/cargo/create">crear</a>
+
+       </tr>
+
+    </thead>
+
+    <thead>
+        <tr>
+            
+            <th>INCIDENCIAS</th>
+
+        </tr>
+        <tr>            
+           <td>
+           <a href="/incidencia/list/">Listas</a>
+           <div>
+           <a href="/incidencia/create">crear</a>
+
+       </tr>
+
+    </thead>
+
+    <thead>
+        <tr>
+            
+            <th>TIPOS DE INCIDENCIAS</th>
+
+        </tr>
+        <tr>            
+           <td>
+           <a href="/tipoincidencia/list/">Listas</a>
+           <div>
+           <a href="/tipoincidencia/create">crear</a>
+
+       </tr>
+
+    </thead>
+
+    <thead>
+        <tr>
+            
+            <th>MODULOS</th>
+
+        </tr>
+        <tr>            
+           <td>
+           <a href="/modulos/list/">Listas</a>
+           <div>
+           <a href="/modulos/create">crear</a>
+
+       </tr>
+
+    </thead>
+
+    <thead>
+        <tr>
+            
+            <th>USUARIOS</th>
+
+        </tr>
+        <tr>            
+           <td>
+           <a href="/user/list/">Listas</a>
+           <div>
+           <a href="/user/create">crear</a>
+
+       </tr>
+
+    </thead>
+
+    <thead>
+        <tr>
+            
+            <th>SEXOS</th>
+
+        </tr>
+        <tr>            
+           <td>
+           <a href="/sexo/list/">Listas</a>
+           <div>
+           <a href="/sexo/create">crear</a>
+
+       </tr>
+
+    </thead>
+
+
+
+
+
+    </tbody>
+</table>
+
+
+
+     
+
+
+</body>
+@endsection
 </html>
+

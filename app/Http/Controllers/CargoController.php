@@ -14,7 +14,9 @@ class CargoController extends Controller
      */
     public function index()
     {
-        //
+        $qs = cargo::all();
+
+        return $qs;
     }
 
     /**
@@ -24,7 +26,7 @@ class CargoController extends Controller
      */
     public function create()
     {
-        //
+    
     }
 
     /**
@@ -35,7 +37,10 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cargo = new cargo();
+        $cargo->cargo = $request['cargo'];
+        $cargo->save();
+        return $cargo;
     }
 
     /**
@@ -44,9 +49,10 @@ class CargoController extends Controller
      * @param  \App\Cargo  $cargo
      * @return \Illuminate\Http\Response
      */
-    public function show(Cargo $cargo)
+    public function show(Cargo $cargo, $id)
     {
-        //
+        $registroencontrado  = cargo::find($id);
+        return $registroencontrado;
     }
 
     /**
@@ -57,7 +63,7 @@ class CargoController extends Controller
      */
     public function edit(Cargo $cargo)
     {
-        //
+        return view('editarcargo', ['cargo' => $cargo]);
     }
 
     /**
@@ -69,7 +75,9 @@ class CargoController extends Controller
      */
     public function update(Request $request, Cargo $cargo)
     {
-        //
+        $cargo->cargo = $request['cargo'];
+        $cargo->save();
+        return $cargo;
     }
 
     /**
@@ -80,6 +88,15 @@ class CargoController extends Controller
      */
     public function destroy(Cargo $cargo)
     {
-        //
+        $cargo->delete();
+        return redirect('cargo/list');
+    }
+
+    public function list()
+    {
+        $rs = $this->index();
+        return view('listacargo', ['rs' => $rs]);
+
+
     }
 }

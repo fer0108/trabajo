@@ -14,7 +14,9 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        //
+        $qs = incidencia::all();
+
+        return $qs;
     }
 
     /**
@@ -35,7 +37,17 @@ class IncidenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $model = new incidencia();
+
+        $model->titulo = $request['titulo'];
+        $model->descripcion = $request['descripcion'];
+        $model->modulo_id = $request['modulo_id'];
+        $model->tipo_incidencia_id = $request['tipo_incidencia_id'];
+        $model->user_id = $request['user_id'];
+        
+
+        $model->save();
+        return $model;
     }
 
     /**
@@ -44,9 +56,10 @@ class IncidenciaController extends Controller
      * @param  \App\Incidencia  $incidencia
      * @return \Illuminate\Http\Response
      */
-    public function show(Incidencia $incidencia)
+    public function show(Incidencia $incidencia, $id)
     {
-        //
+        $registrosencontrados  = incidencia::find($id);
+        return $registrosencontrados;
     }
 
     /**
@@ -57,7 +70,7 @@ class IncidenciaController extends Controller
      */
     public function edit(Incidencia $incidencia)
     {
-        //
+        return view('editarincidencias', ['incidencia' => $incidencia]);
     }
 
     /**
@@ -69,8 +82,17 @@ class IncidenciaController extends Controller
      */
     public function update(Request $request, Incidencia $incidencia)
     {
-        //
+        $incidencia->titulo = $request['titulo'];
+        $incidencia->descripcion = $request['descripcion'];
+        $incidencia->modulo_id = $request['modulo_id'];
+        $incidencia->tipo_incidencia_id = $request['tipo_incidencia_id'];
+        $incidencia->user_id = $request['user_id'];
+        
+
+        $incidencia->save();
+        return $incidencia;
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -78,8 +100,15 @@ class IncidenciaController extends Controller
      * @param  \App\Incidencia  $incidencia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Incidencia $incidencia)
+    public function destroy(incidencia $incidencia)
     {
-        //
+        $incidencia->delete();
+        return redirect('/incidencia/list');
+    }
+
+    public function list()
+    {
+        $rs = $this->index();
+        return view('listaincidencias', ['rs' => $rs]);
     }
 }
