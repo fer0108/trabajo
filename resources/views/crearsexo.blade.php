@@ -6,10 +6,8 @@
 
     <div class="form-group">
  
-    </div
-        <label for="">entidades</label>
-        <input type="text" class="form-control" id="sexo" name="sexo"placeholder="escriba el valor del campo">
-
+    @component('componentes.text', ['name' => 'sexo', 'label' => 'SEXO', 'placeholder' =>'Ingrese el Nombre'])
+        @endcomponent
 
     
 

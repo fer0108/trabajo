@@ -22,6 +22,7 @@ route::get('entidades/list', 'EntidadController@list');
 route::get('entidades/create', function(){
 
     return view('crear');
+  
 });
 
 route::get('entidades', 'EntidadController@index');
@@ -36,10 +37,7 @@ Auth::routes();
 
 route::get('perfil/edit/{perfil}', 'PerfilController@edit');
 route::get('perfil/listas', 'PerfilController@list');
-route::get('perfil/create', function(){
-
-    return view('crearperfil');
-});
+Route::get('perfil/create','PerfilController@create');
 
 route::get('perfil', 'PerfilController@index');
 route::get('perfil/{id}', 'PerfilController@show');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entidad;
+
 use Illuminate\Http\Request;
 
 class EntidadController extends Controller
@@ -14,9 +15,14 @@ class EntidadController extends Controller
      */
     public function index()
     {
-        $qs = Entidad::all();
+        $qs = Entidad::with([
+                'entidad'
+
+        ])->get;
 
         return $qs;
+
+        //evitar el n+1
     }
 
     /**
@@ -26,7 +32,7 @@ class EntidadController extends Controller
      */
     public function create()
     {
-        //
+      
     }
 
     /**

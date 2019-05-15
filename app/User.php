@@ -14,7 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
 
-    protected $table = 'users';
+   protected $table = 'users';
     
     use Notifiable;
 
@@ -26,7 +26,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
+    public function  perfiles()
 
+    {
+            return $this->hasOne(Perfil::Class);
+
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -45,10 +50,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function perfil ()
-    {
-        return $this->hasOne(Perfil::class, 'user_id');
-    }
-
+    
     
 }

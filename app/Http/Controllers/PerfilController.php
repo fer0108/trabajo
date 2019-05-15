@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Perfil;
+use App\Sexo;
+use App\Cargo;
+use App\Entidad;
+use App\User;
 use Illuminate\Http\Request;
 
 class PerfilController extends Controller
@@ -14,9 +18,17 @@ class PerfilController extends Controller
      */
     public function index()
     {
-        $qs = perfil::all();
+        return Perfil::with([
 
-        return $qs;
+            'sexo',
+            'entidad',
+            'cargo',
+            'entidad',
+            'name'
+
+        ])->get();
+
+        
     }
 
     /**
@@ -26,7 +38,12 @@ class PerfilController extends Controller
      */
     public function create()
     {
-        //
+        $sexos = Sexo::all();
+        $cargos = Cargo::all();
+        $entidades = Entidad::all();
+        $users = User::all();
+        return view('crearperfil', compact('sexos','cargos','entidades','users'));
+        //return view('welcome', compact('sexos'));
     }
 
     /**
